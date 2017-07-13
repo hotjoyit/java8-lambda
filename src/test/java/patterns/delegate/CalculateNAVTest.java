@@ -11,12 +11,14 @@ public class CalculateNAVTest {
 
   @Test
   public void 주식가치평가() {
+    // lambda expression 으로 위임
     final CalculateNAV calculateNAV = new CalculateNAV(ticker -> new BigDecimal("6.01"));
     assertThat(calculateNAV.computeStockWorth("SAMSUNG", 100), is(new BigDecimal("601.00")));
   }
 
   @Test
   public void Mock테스트() {
+    // method reference 로 위임
     final CalculateNAV calculateNAV = new CalculateNAV(MockFinance::getPrice);
     assertThat(calculateNAV.computeStockWorth("ZUM", 100), is(new BigDecimal("12300.00")));
   }
